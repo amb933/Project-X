@@ -17,11 +17,8 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
 -   User:
 
     -   id
-    -   name
-    -   lastname
     -   username
     -   avatar (optional)
-    -   country 
     -   biography (optional)
     -   email
     -   password
@@ -45,6 +42,7 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
                    'Business', 
                    'Various')
     -   expirationDate (optional)
+    -   realized (booleano)
     -   createdAt
     -   modifiedAt
 
@@ -52,10 +50,8 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
     -   id
     -   idUser
     -   idService
-    -   finishedFile
-    -   realized (booleano)
-    -   comments
-    -   modifiedAt
+    -   finalFile
+    -   observations
     -   createdAt
 
 ## Endpoints
@@ -72,5 +68,5 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
 -   POST [/services] - Permite crear un servicio. TOKEN 
 -   GET [/services] - Lista todos los servicios. 
 -   GET [/services/:idService] - Devuelve información de un servicio concreto. 
--   POST [/services/:idService/match] - Selecciona un servicio. TOKEN 
--   PUT  [/services/:idService/match] - Modificar o finalizar un servicio. TOKEN 
+-   GET [/services/:idService/matches] - Selecciona todos los matches de un servicio. TOKEN 
+-   PUT  [/services/:idService] - Modificar o finalizar un servicio. TOKEN 
