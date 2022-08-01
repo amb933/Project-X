@@ -2,6 +2,9 @@
 //El método config localiza el fichero .env que hayamos creado en la raíz del proyecto y pone disponibles las variables que figuren en el fichero
 require("dotenv").config();
 
+// chalk pone colorinchos en la consola
+const chalk = require('chalk');
+
 //Importamos la función de la conexión
 const getConnection = require("./getConnection");
 
@@ -11,11 +14,14 @@ async function main() {
     try {
         connection = await getConnection();
 
+        console.log(chalk.red('Delete tables...'));
+
+
         await connection.query('DROP TABLE IF EXISTS matches');
         await connection.query('DROP TABLE IF EXISTS services');
         await connection.query('DROP TABLE IF EXISTS users');
 
-        console.log('Creando tablas...');
+        console.log(chalk.blue('Creating tables...'));
 
         await connection.query(`
             CREATE TABLE IF NOT EXISTS users (
@@ -61,13 +67,13 @@ async function main() {
                 FOREIGN KEY (idUser) REFERENCES users (id), 
                 idServices INT UNSIGNED NOT NULL, 
                 FOREIGN KEY (idServices) REFERENCES services (id), 
-                finishedFile VARCHAR(100),
-                observations text,
+                finalFile VARCHAR(100),
+                observations TEXT,
                 createdAt TIMESTAMP NOT NULL
             )
         `);
 
-        console.log('¡Tablas creadas!');
+        console.log(chalk.green('¡Created tables!'));
     } catch (err) { 
         console.error(err);
     } finally {
@@ -77,3 +83,5 @@ async function main() {
     }
 
 } 
+
+main();
