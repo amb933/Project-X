@@ -2,7 +2,9 @@
 
 const insertUserQuery = require('../../db/userQueries/insertUserQuery');
 
-const generateError = require('../../helpers');
+const { validateSchema } = require('../../helpers');
+const userSchema = require('../../schema');
+
 
 
 const newUser = async (req, res, next) => {
@@ -11,10 +13,14 @@ const newUser = async (req, res, next) => {
         // Obtenemos los campos del body
         const { username, email, password } = req.body;
 
-        // Si falta algun campo lanzamos un error 
+
+        // Validamos los datos del body con el schema de Joi
+        await validateSchema(userSchema, req.body);
+
+       /*  // Si falta algun campo lanzamos un error 
         if(!username || !email || !password) {
             throw generateError(`missing fields`, 400);
-        }
+        } */
 
         // Insertamos un nuevo usuario en la base de datos
         await insertUserQuery(username, email, password);

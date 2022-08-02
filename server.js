@@ -4,29 +4,55 @@ require("dotenv").config();
 
 const express = require("express");
 const morgan = require("morgan");
+const fileUpload = require('express-fileupload');
 // chalk pone colorinchos en la consola
 const chalk = require('chalk');
 
-const {PORT} = process.env 
+const { PORT, UPLOADS_DIR } = process.env 
 
 const app = express();
 
-app.use(express.json());
+// Middleware que hace uso del logger "morgan".
 app.use(morgan('dev'));
+
+// Middleware que deserializa un body con formato "raw" y lo pone disponible en "req.body".
+app.use(express.json());
+
+
+// Middleware que deserializa un body con formato "form-data".
+app.use(fileUpload());
+
+// Indicamos cual es el directorio de los ficheros estáticos.
+app.use(express.static(UPLOADS_DIR));
 
 
 /**
- * ########################
- * ## Endpoints Usuarios ##
- * ########################
+ * #################
+ * ## Middlewares ##
+ * #################
  */
-const { newUser } = require('./controllers/users');
+const authUser = require('./Middlewares/authUser');
+const authUserOptional = require('./Middlewares/authUserOptional');
+
+
+/**
+ * ######################
+ * ## Endpoints Users ##
+ * ######################
+ */
+const { newUser, loginUser, editUser  } = require('./controllers/users'); 
 
 // Registro de usuario
-app.post('/users', newUser)
+app.post('/users', newUser);
 
+// Login de usuario
+app.post('/users/login', loginUser);
 
+// Info de un usuario loguedo
+app.get('/users', authUser);
 
+// Editar un usuario
+app.put('/users', authUser, editUser);
 
 
 /**
@@ -51,10 +77,10 @@ app.post('/users', newUser)
  */
 
 app.use((req, res) => {
-    res.status(404).send(chalk.magenta({
+    res.status(404).send({
         status: 'error',
         message: 'Not found!',
-    }));
+    });
 });
 
 

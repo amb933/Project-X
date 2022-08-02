@@ -2,6 +2,8 @@ const getConnection = require('../getConnection');
 const bcrypt = require('bcrypt');
 
 const { generateError } = require('../../helpers');
+const chalk = require('chalk');
+
 
 const insertUserQuery = async (username, email, password) => {
     let connection;
@@ -18,7 +20,7 @@ const insertUserQuery = async (username, email, password) => {
         // Si existe algún usuario con ese nombre de usuario lanzamos un error.
         if (usernameUsers.length > 0) {
             throw generateError(
-                'Ya existe un usuario con ese nombre en la base de datos',
+                'Username already exists at/in database',
                 403
             );
         }
@@ -32,7 +34,7 @@ const insertUserQuery = async (username, email, password) => {
         // Si existe algún usuario con ese email lanzamos un error.
         if (emailUsers.length > 0) {
             throw generateError(
-                'Ya existe un usuario con ese email en la base de datos',
+                'Email already exists in/at database',
                 403
             );
         }
