@@ -59,9 +59,9 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
 ### Usuarios:✅
 
 - POST [/users] - Registro de usuario. ✅
-- POST [/users/login] - Login de usuario (devuelve token).
-- GET [/users] - Devuelve información del usuario del token. TOKEN
-- PUT [/users] - Editar el nombre de usuario, el email o el avatar. TOKEN
+- POST [/users/login] - Login de usuario (devuelve token).✅
+- GET [/users] - Devuelve información del usuario del token. TOKEN✅
+- PUT [/users] - Editar el nombre de usuario, el email o el avatar. TOKEN✅
 
 ### Services:✅
 

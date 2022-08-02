@@ -40,7 +40,7 @@ const authUserOptional = require('./Middlewares/authUserOptional');
  * ## Endpoints Users ##
  * ######################
  */
-const { newUser, loginUser, editUser  } = require('./controllers/users'); 
+const { newUser, loginUser, getOwnUser, editUser  } = require('./controllers/users'); 
 
 // Registro de usuario
 app.post('/users', newUser);
@@ -49,7 +49,7 @@ app.post('/users', newUser);
 app.post('/users/login', loginUser);
 
 // Info de un usuario loguedo
-app.get('/users', authUser);
+app.get('/users', authUser, getOwnUser);
 
 // Editar un usuario
 app.put('/users', authUser, editUser);

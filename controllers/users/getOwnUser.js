@@ -18,4 +18,4 @@ const getOwnUser = async (req, res, next) => {
     }
 };
 
-module.expots = getOwnUser;  
+module.exports = getOwnUser;  
