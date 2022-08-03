@@ -2,7 +2,7 @@ const getConnection = require('../getConnection');
 
 const { generateError } = require('../../helpers');
 
-const selectServiceByIdQuery = async ( idService ) => {
+const selectServiceByIdQuery = async ( idServices ) => {
 
     let connection;
 
@@ -27,7 +27,7 @@ const selectServiceByIdQuery = async ( idService ) => {
                 GROUP BY S.id
                 ORDER BY S.createdAt DESC
             `,
-            [ idService ]
+            [ idServices ]
         );
 
         if (services.length < 1) {

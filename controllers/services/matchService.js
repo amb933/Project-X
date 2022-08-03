@@ -1,20 +1,29 @@
 const insertMatchQuery = require('../../db/serviceQueries/insertMatchQuery');
 const selectServiceByIdQuery = require('../../db/serviceQueries/selectServiceByIdQuery');
+const { generateError } = require('../../helpers');
 
 const matchService = async (req, res, next) => {
 
     try {
         
-        const { idService } = req.params;
+        const { idServices } = req.params;
 
-        await selectServiceByIdQuery(idService, req.user.id);
+       
+        const match = await selectServiceByIdQuery( idServices );
 
-        const match = await insertMatchQuery(idService, req.user.id);
+        if (match.idUser === req.user.id) {
+            throw generateError(`You cant't select your own service`, 403);
+        }
+
+        await insertMatchQuery(req.user.id, idServices);
 
         res.send({
             status: 'ok',
-            message: 'just selected a service',
-        });
+            message: 'Selected service'
+        })
+
+       
+
     } catch (err) {
         next(err);
     }

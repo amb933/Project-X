@@ -4,9 +4,9 @@ const getService = async (req, res, next) => {
 
     try {
 
-        const { idService } = req.params;
+        const { idServices } = req.params;
 
-        const service = await selectServiceByIdQuery(idService, req.user?.id);
+        const service = await selectServiceByIdQuery(idServices, req.user?.id);
 
         res.send({
             status: 'ok',
