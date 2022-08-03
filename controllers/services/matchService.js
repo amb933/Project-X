@@ -6,16 +6,16 @@ const matchService = async (req, res, next) => {
 
     try {
         
-        const { idServices } = req.params;
+        const { idService } = req.params;
 
        
-        const match = await selectServiceByIdQuery( idServices );
+        const match = await selectServiceByIdQuery( idService );
 
         if (match.idUser === req.user.id) {
             throw generateError(`You cant't select your own service`, 403);
         }
 
-        await insertMatchQuery(req.user.id, idServices);
+        await insertMatchQuery(req.user.id, idService);
 
         res.send({
             status: 'ok',

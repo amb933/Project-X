@@ -9,12 +9,20 @@ const editService = async (req, res, next) => {
 
         let { title, description, category, realized} = req.body;
 
-        if(!title && !description && !req.files?.file && !category && !realized){
+        if(!title || !description || !req.files?.file || !category || !realized){
 
             throw generateError('Missing fields', 400);
         }
 
-        const service = await selectServiceByIdQuery(req.params);
+        const {idService} = req.params;
+
+        
+
+        const service = await selectServiceByIdQuery(idService);
+
+        if (service.idUser !== req.user.id) {
+            throw generateError(`You can't modify other service`, 403);
+        }
 
         let file;
 
@@ -33,7 +41,7 @@ const editService = async (req, res, next) => {
         realized = realized || service.realized;
 
 
-        await updateServiceQuery(title, description, category, realized, req.service.id)
+        await updateServiceQuery(title, description, file, category, realized, idService)
 
         res.send({
             status: 'ok',

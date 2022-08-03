@@ -4,9 +4,9 @@ const selectAllMatchesQuery = require("../../db/serviceQueries/selectAllMatchesQ
 const listMatches = async (req, res, next) => {
     try {
         
-        const { idMatch } = req.params;
+        const { idService } = req.params;
 
-        const matches = await selectAllMatchesQuery(idMatch);
+        const matches = await selectAllMatchesQuery(idService);
 
        
 
