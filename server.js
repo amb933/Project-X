@@ -54,7 +54,24 @@ app.get('/users', authUser, getOwnUser);
 // Editar un usuario
 app.put('/users', authUser, editUser);
 
+/**
+ * ########################
+ * ## Endpoints Services ##
+ * ########################
+ */
+ const { newService, listServices, getService, matchService } = require('./controllers/services');
 
+ // Registro de un nuevo servicio.
+ app.post('/services', authUser, newService);
+
+ // Listar Servicios
+ app.get('/services', authUserOptional, listServices);
+
+ // Info un servicio en concreto
+app.get('/services/:idService', authUserOptional, getService);
+
+// Seleccionar un servicio 
+app.post('/services/:idService', authUser, matchService)
 /**
  * ######################
  * ## Middleware Error ##

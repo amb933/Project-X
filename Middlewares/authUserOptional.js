@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const generateError = require('../helpers');
 
-const authUser = async (req, res, next) => {
+const authUserOptional = async (req, res, next) => {
     try {
         // Obtenemos el token de la cabecera.
         const { authorization } = req.headers;
@@ -32,4 +32,4 @@ const authUser = async (req, res, next) => {
     }
 };
 
-module.exports = authUser;
+module.exports = authUserOptional;

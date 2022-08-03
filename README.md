@@ -65,8 +65,9 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
 
 ### Services:✅
 
-- POST [/services] - Permite crear un servicio. TOKEN
+- POST [/services] - Permite crear un servicio. TOKEN✅
 - GET [/services] - Lista todos los servicios.
-- GET [/services/:idService] - Devuelve información de un servicio concreto.
+- GET [/services/:idService] - Devuelve información de un servicio concreto.✅
+- POST [/services/:idService/] - Seleccionamos un servicio
 - GET [/services/:idService/matches] - Selecciona todos los matches de un servicio. TOKEN
 - PUT [/services/:idService] - Modificar o finalizar un servicio. TOKEN

@@ -63,8 +63,8 @@ async function main() {
         await connection.query(`
             CREATE TABLE IF NOT EXISTS matches (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
-                idUser INT UNSIGNED NOT NULL, 
-                FOREIGN KEY (idUser) REFERENCES users (id), 
+                idUser INT UNSIGNED NOT NULL,
+                FOREIGN KEY (idUser) REFERENCES users (id),
                 idServices INT UNSIGNED NOT NULL, 
                 FOREIGN KEY (idServices) REFERENCES services (id), 
                 finalFile VARCHAR(100),
