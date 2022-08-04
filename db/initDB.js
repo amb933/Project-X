@@ -65,8 +65,8 @@ async function main() {
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
                 idUser INT UNSIGNED NOT NULL,
                 FOREIGN KEY (idUser) REFERENCES users (id),
-                idServices INT UNSIGNED NOT NULL, 
-                FOREIGN KEY (idServices) REFERENCES services (id), 
+                idService INT UNSIGNED NOT NULL, 
+                FOREIGN KEY (idService) REFERENCES services (id), 
                 finalFile VARCHAR(100),
                 observations TEXT,
                 createdAt TIMESTAMP NOT NULL

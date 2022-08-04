@@ -14,16 +14,17 @@ const selectAllMatchesQuery = async (idService) => {
         const [matches] = await connection.query(
             `
             SELECT M.id, 
-                M.idUser, 
-                U.username,
-                M.idServices,
-                S.title, 
-                M.createdAt
-            FROM matches M
-            INNER JOIN users U ON S.idUser = U.id
-            INNER JOIN services S ON S.idServices = S.id
-            WHERE S.id = ?
-            GROUP BY id
+            M.idUser, 
+            U.username,
+            M.idService,
+            S.title, 
+            M.createdAt
+        FROM matches M
+        INNER JOIN users U ON M.idUser = U.id
+        INNER JOIN services S ON M.idService = S.id
+        WHERE S.id = ?
+        GROUP BY id
+
             `,
             [idService]
         );

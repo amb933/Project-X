@@ -3,10 +3,10 @@ const selectAllServicesQuery = require("../../db/serviceQueries/selectAllService
 const listServices = async (req, res, next) => {
 
     try {
-        
-        const { keyword } = req.query;
 
-        const services = await selectAllServicesQuery(req.user?.id,keyword);
+        const { keyword } = req.query
+         
+        const services = await selectAllServicesQuery(keyword);
 
         res.send({
             status: 'ok',

@@ -9,7 +9,14 @@ const updateServiceQuery = async (title, description, file, category, realized, 
         connection = await getConnection();
 
         await connection.query(
-            `UPDATE services SET title = ?, description = ?, file = ?, category = ?, realized = ?, modifiedAt = ? WHERE id = ?`,
+            `UPDATE services SET 
+            title = ?, 
+            description = ?, 
+            file = ?, 
+            category = ?, 
+            realized = ?, 
+            modifiedAt = ? 
+            WHERE id = ?`,
             [title, description, file, category, realized, new Date(), idService]
         )
         

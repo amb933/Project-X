@@ -2,7 +2,7 @@ const { generateError } = require('../../helpers');
 const getConnection = require('../getConnection');
 
 
-const insertMatchQuery = async (idUser, idServices) => {
+const insertMatchQuery = async (idUser, idService) => {
 
     let connection;
 
@@ -12,9 +12,9 @@ const insertMatchQuery = async (idUser, idServices) => {
 
          const [ matches ] = await connection.query(
             `
-            SELECT id FROM matches WHERE idUser = ? AND idServices = ?
+            SELECT id FROM matches WHERE idUser = ? AND idService = ?
             `,
-            [ idUser, idServices]
+            [ idUser, idService]
         );
 
         if ( matches.length > 0 ) {
@@ -23,10 +23,10 @@ const insertMatchQuery = async (idUser, idServices) => {
 
         await connection.query(
             `
-            INSERT INTO matches (idUser, idServices, createdAt)
+            INSERT INTO matches (idUser, idService, createdAt)
             VALUES (?, ?, ?)
             `,
-            [ idUser, idServices, new Date()]
+            [ idUser, idService, new Date()]
         );
 
         

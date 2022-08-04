@@ -1,6 +1,6 @@
 const selectServiceByIdQuery = require("../../db/serviceQueries/selectServiceByIdQuery");
 const updateServiceQuery = require("../../db/serviceQueries/updateServiceQuery");
-const { generateError, deletePhoto, savePhoto } = require("../../helpers");
+const { generateError, saveFile } = require("../../helpers");
 
 
 const editService = async (req, res, next) => {
@@ -16,22 +16,15 @@ const editService = async (req, res, next) => {
 
         const {idService} = req.params;
 
-        
-
         const service = await selectServiceByIdQuery(idService);
 
-        if (service.idUser !== req.user.id) {
-            throw generateError(`You can't modify other service`, 403);
-        }
+
 
         let file;
 
         if(req.files?.file) {
-            if(service.file) {
-                await deletePhoto(service.file);
-            }
-
-            file = await savePhoto(req.files.file);
+           
+            file = await saveFile(req.files.file);
         }
 
         title = title || service.title;
