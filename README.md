@@ -41,11 +41,19 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
         'Digital Marketing',
         'Business',
         'Various')
+<<<<<<< HEAD
+=======
+    -   expirationDate (optional)
+>>>>>>> 421dba4f880a2cb079d100510742c861b8963105
     -   realized (booleano)
     -   createdAt
     -   modifiedAt
 
+<<<<<<< HEAD
 -   Replies:
+=======
+-   matches:
+>>>>>>> 421dba4f880a2cb079d100510742c861b8963105
     -   id
     -   idUser
     -   idService
@@ -67,5 +75,11 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
 -   POST [/services] - Permite crear un servicio. TOKEN✅
 -   GET [/services] - Lista todos los servicios.✅
 -   GET [/services/:idService] - Devuelve información de un servicio concreto.✅
+<<<<<<< HEAD
 -   POST [/services/:idService] - Comentamos un servicio. TOKEN ✅
 -   PUT [/services/:idService] - Modificar o finalizar un servicio. TOKEN✅
+=======
+-   POST [/services/:idService/] - Seleccionamos (haz match) un servicio ✅
+-   GET [/services/:idService/matches] - Selecciona todos los matches de un servicio. TOKEN
+-   PUT [/services/:idService] - Modificar o finalizar un servicio. TOKEN
+>>>>>>> 421dba4f880a2cb079d100510742c861b8963105

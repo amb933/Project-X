@@ -18,6 +18,10 @@ const editService = async (req, res, next) => {
 
         const service = await selectServiceByIdQuery(idService);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 421dba4f880a2cb079d100510742c861b8963105
 
         let file;
 
