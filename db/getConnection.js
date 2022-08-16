@@ -1,6 +1,5 @@
 // Creamos la conexión a la BBDD
 
-
 const mysql = require('mysql2/promise'); // cargamos la versión de promesas de MySQL xa poder utilizar async y await
 
 
@@ -30,7 +29,7 @@ const getConnection = async () => {
         
     } catch (err) {
         console.error(err);
-        throw new Error('Error al conectar con MySQL');
+        throw new Error('MySQL connection error');
 
     }
 }   

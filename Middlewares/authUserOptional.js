@@ -9,8 +9,7 @@ const authUserOptional = async (req, res, next) => {
 
         // Si hay token....
         if (authorization) {
-            // Variable que contendrá la información del token (el id y el rol que agregamos
-            // en el objeto "payload" de "loginUser").
+            // Variable que contendrá la información del token 
             let payload;
 
             try {

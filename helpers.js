@@ -2,7 +2,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const sharp = require('sharp');
 const { v4: uuid } = require('uuid');
-
+const fileUpload = require('express-fileupload');
 
 const validateSchema = async (schema, data) => {
     try {
@@ -51,6 +51,39 @@ const validateSchema = async (schema, data) => {
     // Retornamos el nombre que le hemos dado a la imagen.
     return imgName;
 };
+
+/**
+ * ################
+ * ## Save File ##
+ * ################
+ */
+
+async function saveFile(file) {
+    // Ruta absoluta donde iran guardandose los archivos subidos
+    const uploadsPath = path.join(__dirname, process.env.UPLOADS_DIR);
+    try {
+        await fs.access(uploadsPath);
+    } catch {
+        await fs.mkdir(uploadsPath);
+    }
+
+    const fileExt = path.extname(file.name);
+
+
+    // Convetinmos el archivo recibido en un objeto fileUpload
+    //const saveFileUpload = fileUpload(file.data);
+
+    // Utilizamos la dependencia uuid xa crear un nombre "encriptado" del archivo
+    const archiveName = `${uuid()}${fileExt}`;
+
+    // Generamos la ruta absoluta donde queremos guardar el archivo
+    const filePath = path.join(uploadsPath, archiveName)
+
+    await file.mv(filePath)
+
+    return archiveName;
+}
+
 
 
 /**
@@ -101,5 +134,6 @@ module.exports =  {
     validateSchema,
     deletePhoto,
     savePhoto,
+    saveFile,
  
 }

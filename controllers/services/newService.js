@@ -1,7 +1,7 @@
 
 const insertServiceQuery = require("../../db/serviceQueries/insertServiceQuery");
 
-const { generateError, deletePhoto, savePhoto } = require("../../helpers");
+const { generateError, deletePhoto, saveFile } = require("../../helpers");
 
 const newService = async (req, res, next) => {
 
@@ -18,7 +18,7 @@ const newService = async (req, res, next) => {
 
             if(req.files?.file) {
 
-                file = await savePhoto(req.files.file)
+                file = await saveFile(req.files.file)
                 
             }
 

@@ -1,6 +1,6 @@
 const getConnection = require("../getConnection");
 
-const updateServiceQuery = async (title, description, file, category, realized, idService) => {
+const updateServiceQuery = async ( description, category, realized, idService) => {
 
     let connection;
 
@@ -9,8 +9,13 @@ const updateServiceQuery = async (title, description, file, category, realized, 
         connection = await getConnection();
 
         await connection.query(
-            `UPDATE services SET title = ?, description = ?, file = ?, category = ?, realized = ?, modifiedAt = ? WHERE id = ?`,
-            [title, description, file, category, realized, new Date(), idService]
+            `UPDATE services SET 
+            description = ?, 
+            category = ?, 
+            realized = ?, 
+            modifiedAt = ? 
+            WHERE id = ?`,
+            [ description, category, realized, new Date(), idService]
         )
         
     } finally {

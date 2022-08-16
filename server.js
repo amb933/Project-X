@@ -59,7 +59,7 @@ app.put('/users', authUser, editUser);
  * ## Endpoints Services ##
  * ########################
  */
- const { newService, listServices, getService, matchService, listMatches, editService } = require('./controllers/services');
+ const { newService, listServices, getService, editService, replyService } = require('./controllers/services');
 
  // Registro de un nuevo servicio.
  app.post('/services', authUser, newService);
@@ -70,11 +70,8 @@ app.put('/users', authUser, editUser);
  // Info un servicio en concreto
 app.get('/services/:idService', authUserOptional, getService);
 
-// Seleccionar un servicio 
-app.post('/services/:idService', authUser, matchService);
-
-// seleccionar todos los matches de un servicio
-app.get('/services/:idService/matches', authUser, listMatches);
+// Comentar un servicio
+app.post('/services/:idService', authUser, replyService);
 
 // Editar un servicico
 app.put('/services/:idService', authUser, editService);

@@ -17,7 +17,7 @@ async function main() {
         console.log(chalk.red('Delete tables...'));
 
 
-        await connection.query('DROP TABLE IF EXISTS matches');
+        await connection.query('DROP TABLE IF EXISTS replies');
         await connection.query('DROP TABLE IF EXISTS services');
         await connection.query('DROP TABLE IF EXISTS users');
 
@@ -61,12 +61,12 @@ async function main() {
         `);
 
         await connection.query(`
-            CREATE TABLE IF NOT EXISTS matches (
+            CREATE TABLE IF NOT EXISTS replies (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
                 idUser INT UNSIGNED NOT NULL,
                 FOREIGN KEY (idUser) REFERENCES users (id),
-                idServices INT UNSIGNED NOT NULL, 
-                FOREIGN KEY (idServices) REFERENCES services (id), 
+                idService INT UNSIGNED NOT NULL, 
+                FOREIGN KEY (idService) REFERENCES services (id), 
                 finalFile VARCHAR(100),
                 observations TEXT,
                 createdAt TIMESTAMP NOT NULL
