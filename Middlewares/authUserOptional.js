@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const generateError = require('../helpers');
+const {generateError} = require('../helpers');
 
 const authUserOptional = async (req, res, next) => {
     try {
@@ -9,7 +9,8 @@ const authUserOptional = async (req, res, next) => {
 
         // Si hay token....
         if (authorization) {
-            // Variable que contendrá la información del token 
+            // Variable que contendrá la información del token (el id y el rol que agregamos
+            // en el objeto "payload" de "loginUser").
             let payload;
 
             try {
