@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "a1acdfc7-8a56-42a7-a907-dbc66e384cf9",
+		"name": "NeedsPortal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Paula\",\r\n    \"email\": \"paula@gmail.com\",\r\n    \"password\": \"adddddddD!d1d\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"paula@gmail.com\",\r\n    \"password\": \"adddddddD!d1d\"\r\n}  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/users/login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Token1_adriana}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Token1_adriana}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "Adriana2",
+									"type": "default"
+								},
+								{
+									"key": "biography",
+									"value": "lorem ipsun",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "adriana2@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/AdrianaMartínez/Downloads/Captura de pantalla 2022-08-04 100103.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "New Service",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Token2_paula}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Make a logo",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "Make a logo like the attached example ",
+									"type": "default"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AdrianaMartínez/Downloads/actualizacion-orden-bases.pdf"
+								},
+								{
+									"key": "category",
+									"value": "Design and art",
+									"type": "default"
+								},
+								{
+									"key": "realized",
+									"value": "0",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/services",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/services?keyword=h",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"services"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "h"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/services/2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"services",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reply Service",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Token1_adriana}}",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "{{Token2_paula}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AdrianaMartínez/Downloads/extracto-de-convocatoria-segmentoII.pdf"
+								},
+								{
+									"key": "observations",
+									"value": "Find attached the final document",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/services/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"services",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Service",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Token1_adriana}}",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{Token2_paula}}",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Translate into Spanish (completed2)",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Completed",
+									"type": "default"
+								},
+								{
+									"key": "category",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "realized",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/services/2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"services",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://localhost:3000",
+			"type": "default"
+		},
+		{
+			"key": "Token1_adriana",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjYwODM1NjQxLCJleHAiOjE2NjE2OTk2NDF9.vNuyb8jo2bEaCE_wT5fQiwwbEhTPukwYelSYaJr7JPM",
+			"type": "default"
+		},
+		{
+			"key": "Token2_paula",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjYwODM2MDkzLCJleHAiOjE2NjE3MDAwOTN9.MUCK94ndX72ZB2pNt_417VuaLKsn10B-UaVtn3eB6Z8",
+			"type": "default"
+		}
+	]
+}

@@ -1,18 +1,18 @@
 # Project-X
 
-Este proyecto consiste en crear una aplicación de peticiones de servicios digitales.
+This project consists of creating an application for digital service requests.
 
-## Instalar
+## Install
 
--   Crear una base de datos vacía en una instancia de MySQL local.
+- Create an empty database on a local MySQL instance.
 
--   Guardar el archivo .env.example como .env y cubrir los datos necesarios.
+- Save the .env.example file as .env and fill in the necessary data. 
 
--   Ejecutar npm run initDB para crear las tablas necesarias en la base de datos anteriormente creada.
+- Run "npm run initDB" to create the necessary tables in the previously created database.
 
--   Ejecutar npm run dev o npm start para lanzar el servidor.
+- Run "npm run dev" to launch the server.
 
-## Entidades
+## Entities
 
 -   User:
 
@@ -55,17 +55,17 @@ Este proyecto consiste en crear una aplicación de peticiones de servicios digit
 
 ## Endpoints
 
-### Usuarios:✅
+### Users:✅
 
--   POST [/users] - Registro de usuario. ✅
--   POST [/users/login] - Login de usuario (devuelve token).✅
--   GET [/users] - Devuelve información del usuario del token. TOKEN✅
--   PUT [/users] - Editar el nombre de usuario, el email o el avatar. TOKEN✅
+-  POST [/users] - User registration.✅File: newUser.js
+-  POST [/users/login] - User login (returns token)✅File: loginUser.js
+-  GET [/users] - Returns user logged information. TOKEN✅File: getOwnUser.js 
+-  PUT [/users] - Edit your username, email or avatar. TOKEN✅File: editUser.js
 
 ### Services:✅
 
--   POST [/services] - Permite crear un servicio. TOKEN✅
--   GET [/services] - Lista todos los servicios.✅
--   GET [/services/:idService] - Devuelve información de un servicio concreto.✅
--   POST [/services/:idService] - Comentamos un servicio. TOKEN ✅
--   PUT [/services/:idService] - Modificar o finalizar un servicio. TOKEN ✅# Needs-Portal-Pruebas
+-  POST [/services] - Allows to create a service. TOKEN✅ File: newService.js
+-  GET [/services] - List all services.✅ File: listServices.js
+-  GET [/services/:idService] - Returns information from a specific service.✅File: getService.js
+-  POST [/services/:idService] - Comment a service. TOKEN ✅ File: replyService.js
+-  PUT [/services/:idService] - Modify or finish a service. TOKEN ✅ File: editService.js

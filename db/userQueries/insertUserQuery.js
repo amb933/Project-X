@@ -1,9 +1,7 @@
 const getConnection = require('../getConnection');
 const bcrypt = require('bcrypt');
-
 const { generateError } = require('../../helpers');
 const chalk = require('chalk');
-
 
 const insertUserQuery = async (username, email, password) => {
     let connection;
@@ -11,38 +9,38 @@ const insertUserQuery = async (username, email, password) => {
     try {
         connection = await getConnection();
 
-        // Obtenemos un array de usuarios en base al username establecido.
+        // We get an array of users based on the username.
         const [usernameUsers] = await connection.query(
             `SELECT id FROM users WHERE username = ?`,
             [username]
         );
 
-        // Si existe algún usuario con ese nombre de usuario lanzamos un error.
+        // If there is any user with that username we throw an error
         if (usernameUsers.length > 0) {
             throw generateError(
-                'Username already exists at/in database',
+                'Username already exists in database',
                 403
             );
         }
 
-        // Obtenemos un array de usuarios en base al email o al nombre de usuario establecido.
+        // We get an array of users based on the email or the username.
         const [emailUsers] = await connection.query(
             `SELECT id FROM users WHERE email = ?`,
             [email]
         );
 
-        // Si existe algún usuario con ese email lanzamos un error.
+        // If there is any user with that email we throw an error.
         if (emailUsers.length > 0) {
             throw generateError(
-                'Email already exists in/at database',
+                'Email already exists in database',
                 403
             );
         }
 
-        // Encriptamos la contraseña.
+        // Encrypt the password.
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Creamos el usuario.
+        // Create a user 
         await connection.query(
             `INSERT INTO users (username, email, password, createdAt) VALUES (?, ?, ?, ?)`,
             [username, email, hashedPassword, new Date()]

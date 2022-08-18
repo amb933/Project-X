@@ -1,15 +1,14 @@
-//Esto siempre al principio
-//El método config localiza el fichero .env que hayamos creado en la raíz del proyecto y pone disponibles las variables que figuren en el fichero
+// The config method locates the .env file we have created in the root of the project and makes available the variables contained in the file.
 require("dotenv").config();
 
-// chalk pone colorinchos en la consola
+// Chalk allows you to edit the colours displayed on the console.
 const chalk = require('chalk');
 
-//Importamos la función de la conexión
+// We import the function´s connection
 const getConnection = require("./getConnection");
 
 async function main() {
-    //Variable que almacenará una conexión libre con la base de datos
+    // Variable to store a free connection to the database 
     let connection;
     try {
         connection = await getConnection();

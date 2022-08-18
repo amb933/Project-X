@@ -1,3 +1,4 @@
+/* GET [/users] - Returns user logged information. TOKEN */
 const selectUserByIdQuery = require("../../db/userQueries/selectUserByIdQuery");
 
 const getOwnUser = async (req, res, next) => {

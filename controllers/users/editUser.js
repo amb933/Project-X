@@ -1,10 +1,9 @@
-/* - PUT [/users] - Editar el nombre de usuario, el email o el avatar. TOKEN */
+/* - PUT [/users] - Edit username, email or avatar. TOKEN */ 
 
 const selectUserByIdQuery = require("../../db/userQueries/selectUserByIdQuery");
 const updateUserQuery = require("../../db/userQueries/updateUserQuery");
 const { generateError, deletePhoto, savePhoto } = require("../../helpers");
 const userSchema = require("../../schema");
-
 
 const editUser = async (req, res, next) => {
     try {
@@ -13,7 +12,7 @@ const editUser = async (req, res, next) => {
 
 
         if (!username && !biography && !email && !req.files?.avatar) {
-            throw generateError('Faltan campos', 400);
+            throw generateError('Missing fields', 400);
         }
         
         const user = await selectUserByIdQuery(req.user.id);

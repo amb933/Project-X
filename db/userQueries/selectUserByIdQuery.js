@@ -1,6 +1,4 @@
-
 const getConnection = require('../getConnection');
-
 const { generateError } = require('../../helpers');
 
 const selectUserByIdQuery = async (idUser) => {
@@ -17,7 +15,7 @@ const selectUserByIdQuery = async (idUser) => {
 
 
         if (users.lenght < 1) {
-            throw generateError(`user not found`, 404);
+            throw generateError(`User not found`, 404);
         }
 
         return users[0];

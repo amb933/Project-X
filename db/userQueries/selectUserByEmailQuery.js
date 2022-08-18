@@ -1,7 +1,6 @@
 const getConnection = require('../getConnection');
 const { generateError } = require('../../helpers');
 
-
 const selectUserByEmailQuery = async (email) => {
 
     let connection;

@@ -1,6 +1,5 @@
 const getConnection = require('../getConnection');
 
-
 const insertReplyQuery = async (idUser, idService, finalFile, observations) => {
 
     let connection;

@@ -1,5 +1,3 @@
-
-
 const getConnection = require('../getConnection');
 
 const updateUserQuery = async (username, biography, email, avatar, idUser) => {

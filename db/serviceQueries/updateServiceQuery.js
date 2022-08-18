@@ -1,6 +1,6 @@
 const getConnection = require("../getConnection");
 
-const updateServiceQuery = async (title, description, category, realized, idService) => {
+const updateServiceQuery = async (description, category, realized, idService) => {
 
     let connection;
 

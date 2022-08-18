@@ -1,5 +1,3 @@
-
-
 const editUser = require('./editUser');
 const loginUser = require('./loginUser');
 const getOwnUser = require('./getOwnUser');

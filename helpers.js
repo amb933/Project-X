@@ -6,9 +6,9 @@ const fileUpload = require('express-fileupload');
 
 const validateSchema = async (schema, data) => {
     try {
-        await schema.validateAsync(data); // .validateAsync es un método de los schemas de JOI "magia"
+        await schema.validateAsync(data); // .validateAsync is a method of JOI schemas "magic".
     } catch (err) {
-        err.statusCode = 400; // Joi se encarga de añadirle el error
+        err.statusCode = 400; // Joi is in charge of adding the error
         throw err;
     }
 }
@@ -20,35 +20,34 @@ const validateSchema = async (schema, data) => {
  */
 
  const savePhoto = async (img) => {
-    // Creamos una ruta absoluta al directorio donde vamos a subir las imágenes.
+    // We create an absolute path to the directory where we are going to upload the images.
     const uploadsPath = path.join(__dirname, process.env.UPLOADS_DIR);
 
     try {
-        // Intentamos acceder al directorio de subida de archivos mediante el método "access" de fs.
-        // Este método genera un error si no es posible acceder al archivo.
+        // We try to access the upload directory using the "access" method of fs.
+        // This method generates an error if the file cannot be accessed.
         await fs.access(uploadsPath);
     } catch {
-        // Si salta el error quiere decir que el directorio no existe así que lo creamos.
+        //  If we get an error it means that the directory does not exist, so we create it.
         await fs.mkdir(uploadsPath);
     }
 
-    // Procesamos la imagen y la convertimos en un objeto de tipo "Sharp".
+    // We process the image and change it into an object of type "Sharp".
     const sharpImg = sharp(img.data);
 
-    // Redimensionamos la imagen para evitar que sean demasiado pesadas. Le asignamos un ancho
-    // máximo de 500px.
+    // We resize the image to prevent them from being too heavy. We assign a max width of 500px.
     sharpImg.resize(500);
 
-    // Generamos un nombre único para la imagen.
+    // We generate a unique name for the image.
     const imgName = `${uuid()}.jpg`;
 
-    // Generamos la ruta absoluta donde queremos guardar la imagen.
+    // We generate the absolute path where we want to save the image.
     const imgPath = path.join(uploadsPath, imgName);
 
-    // Guardamos la imagen en el directorio correspondiente.
+    // Save the image in the appropriate directory.
     await sharpImg.toFile(imgPath);
 
-    // Retornamos el nombre que le hemos dado a la imagen.
+    // We return the name we have given to the image.
     return imgName;
 };
 
@@ -59,7 +58,7 @@ const validateSchema = async (schema, data) => {
  */
 
 async function saveFile(file) {
-    // Ruta absoluta donde iran guardandose los archivos subidos
+    // Absolute path where the uploaded files will be stored
     const uploadsPath = path.join(__dirname, process.env.UPLOADS_DIR);
     try {
         await fs.access(uploadsPath);
@@ -70,13 +69,13 @@ async function saveFile(file) {
     const fileExt = path.extname(file.name);
 
 
-    // Convetinmos el archivo recibido en un objeto fileUpload
+    // Change the received file to a fileUpload object
     //const saveFileUpload = fileUpload(file.data);
 
-    // Utilizamos la dependencia uuid xa crear un nombre "encriptado" del archivo
+    // We use the uuid dependency to create an "encrypted" name of the file
     const archiveName = `${uuid()}${fileExt}`;
 
-    // Generamos la ruta absoluta donde queremos guardar el archivo
+    // Generate the absolute path where we want to save the file
     const filePath = path.join(uploadsPath, archiveName)
 
     await file.mv(filePath)
@@ -94,25 +93,25 @@ async function saveFile(file) {
 
 const deletePhoto = async (imgName) => {
     try {
-        // Creamos la ruta absoluta a la imagen que queremos borrar.
+        // We create the absolute path to the image we want to delete.
         const imgPath = path.join(__dirname, process.env.UPLOADS_DIR, imgName);
 
         try {
-            // Intentamos acceder al archivo con la imagen mediante el método "access" de fs.
-            // Este método genera un error si no es posible acceder al archivo.
+            //We try to access the file with the image using the "access" method of fs. 
+            //This method generates an error if it is not possible to access the file.
             await fs.access(imgPath);
         } catch {
-            // Si salta el error quiere decir que la imagen no existe así que hacemos un return
-            // y finalizamos la función.
+            // If we get the error it means that the image doesn't exist 
+            //so we do a "return" and end the function.
             return false;
         }
 
-        // Eliminamos la imagen del disco.
+        // Delete the image from the HDD (Hard Disk Drive). 
         await fs.unlink(imgPath);
 
         return true;
     } catch {
-        throw generateError('Error al eliminar la imagen del servidor');
+        throw generateError('Error deleting image from server');
     }
 };
 

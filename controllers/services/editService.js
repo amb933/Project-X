@@ -1,3 +1,4 @@
+/* PUT [/services/:idService] - Modify or finish a service. TOKEN */ 
 const selectServiceByIdQuery = require("../../db/serviceQueries/selectServiceByIdQuery");
 const updateServiceQuery = require("../../db/serviceQueries/updateServiceQuery");
 const { generateError } = require("../../helpers");
@@ -13,7 +14,7 @@ const editService = async (req, res, next) => {
         const service = await selectServiceByIdQuery(idService);
 
         if (service.idUser !== req.user.id) {
-            throw generateError('No tienes suficientes permisos', 401);
+            throw generateError('You do not have permissions', 401);
         }
 
         let { description, category, realized} = req.body;

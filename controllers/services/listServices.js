@@ -1,3 +1,4 @@
+/* - GET [/services] - List all services.*/ 
 const selectAllServicesQuery = require("../../db/serviceQueries/selectAllServicesQuery");
 
 const listServices = async (req, res, next) => {

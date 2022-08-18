@@ -1,4 +1,4 @@
-/* - POST [/users/login] - Login de usuario (devuelve token). */
+/* - POST [/users/login] - User login (returns token). */
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -28,7 +28,7 @@ const loginUser = async (req, res, next) => {
             id: user.id
         };
 
-        //Generamos el token 
+        //Generate token 
         const token = jwt.sign(payload, process.env.SECRET, {
             expiresIn: '10d',
         });

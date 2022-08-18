@@ -1,5 +1,4 @@
 const getConnection = require('../getConnection');
-
 const { generateError } = require('../../helpers');
 
 const selectServiceByIdQuery = async (idService) => {

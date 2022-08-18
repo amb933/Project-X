@@ -10,12 +10,12 @@ const userSchema = Joi.object().keys({
                         case 'any.required':
                         case 'sting.required':
                             return new Error(
-                                `El campo username es requerido`
+                                `Username field is required`
                             );
 
                         default:
                             return new Error(
-                                `El campo username debe tener entre 2 y 30 caracteres`
+                                `The username field must be between 2 and 30 characters.`
                             );    
                     }
                 }),
@@ -26,11 +26,11 @@ const userSchema = Joi.object().keys({
              .error((errors) => {
                 if(errors[0].code === 'any.required') {
 
-                    return new Error('El campo emial es requerido');
+                    return new Error('The email field is required');
 
                 } else {
 
-                    return new Error('El email no es correcto');
+                    return new Error('Wrong email');
                 }
              }),
              
@@ -42,20 +42,19 @@ const userSchema = Joi.object().keys({
                .error((errors) => {
                  switch (errors[0].code) {
                      case 'any.required':
-                         return new Error('La constraseña es requerida');
+                         return new Error('Password is required');
      
                      case 'string.pattern.base':
                          return new Error(
-                             'La contraseña debe tener al menos una letra mayúscula, una letra minúscula, un número y un signo de puntuación'
+                             'The password must contain at least one uppercase letter, one lowercase letter, one number and one punctuation mark.'
                          ); 
      
                      default:
                          return new Error(
-                             'La constraseña debe tener entre 6 y 30 caracteres'
+                             'The password must be between 6 and 30 characters'
                          );
                  }
              })         
-
  
 });            
 

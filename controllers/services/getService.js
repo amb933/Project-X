@@ -1,3 +1,4 @@
+/* GET [/services/:idService] - Returns information from a specific service.*/ 
 const selectServiceByIdQuery = require("../../db/serviceQueries/selectServiceByIdQuery");
 
 const getService = async (req, res, next) => {

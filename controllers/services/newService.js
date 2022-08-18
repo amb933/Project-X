@@ -1,6 +1,6 @@
+/* - POST [/services] - Allows to create a service.*/ 
 
 const insertServiceQuery = require("../../db/serviceQueries/insertServiceQuery");
-
 const { generateError, saveFile } = require("../../helpers");
 
 const newService = async (req, res, next) => {
@@ -13,7 +13,7 @@ const newService = async (req, res, next) => {
             throw generateError(`There are still fields to cover`, 400);
         }
 
-            // Variable donde almacenaremos el nombre del archivo
+            // Variable where we store the file name 
             let file;
 
             if(req.files?.file) {

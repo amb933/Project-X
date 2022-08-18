@@ -1,12 +1,8 @@
-// Creamos la conexión a la BBDD
-
-
-const mysql = require('mysql2/promise'); // cargamos la versión de promesas de MySQL xa poder utilizar async y await
-
-
+// We create the connection to the database
+const mysql = require('mysql2/promise'); // We load the MySQL promise version in order to be able to use async and await
 const { MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB } = process.env;
 
-// Referencia al pool de conexiones
+// Reference to pool connections 
 let pool;
 
 
@@ -30,7 +26,7 @@ const getConnection = async () => {
         
     } catch (err) {
         console.error(err);
-        throw new Error('Error al conectar con MySQL');
+        throw new Error('MySQL connection error');
 
     }
 }   

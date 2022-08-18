@@ -3,30 +3,28 @@ const { generateError } = require('../helpers');
 
 const authUser = async (req, res, next) => {
     try {
-        // Obtenemos el token de la cabecera.
+        // We get the token from the header
         const { authorization } = req.headers;
 
-        // Si no hay token lanzamos un error.
+        // If the token does not exist, we throw an error.
         if (!authorization) {
-            throw generateError('Falta la cabecera de autorización', 401);
+            throw generateError('Authorisation header missing', 401);
         }
 
-        // Variable que contendrá la información del token (el id y el rol que agregamos
-        // en el objeto "payload" de "loginUser").
+        // Variable that will contain the token information  
         let payload;
 
         try {
-            // Intentamos obtener la info del token.
+            // We try to get the token info.
             payload = jwt.verify(authorization, process.env.SECRET);
         } catch {
-            throw generateError('Token incorrecto', 401);
+            throw generateError('Wrong Token', 401);
         }
 
-        // Agregamos una nueva propiedad (nos la inventamos) al objeto "request" con la info
-        // del payload.
+        // We add a new property (we made it up) to the object "request" with the info of the payload.
         req.user = payload;
 
-        // Saltamos al siguiente controlador.
+        // We skip to the next controller.  
         next();
     } catch (err) {
         next(err);
